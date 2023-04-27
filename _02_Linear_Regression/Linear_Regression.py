@@ -9,10 +9,18 @@ except ImportError as e:
     import numpy as np
 
 def ridge(data):
-    pass
+    beta = np.linalg.inv(X.T.dot(X) + 0.1 * np.identity(X.shape[1])).dot(X.T).dot(y)
+    return beta
     
 def lasso(data):
-    pass
+    n_features = X.shape[1]
+    beta = np.zeros(n_features)
+    for i in range(max_iter):
+        # 计算梯度
+        gradient = X.T.dot(X.dot(beta) - y) + 0.1 * np.sign(beta)
+        # 更新权重
+        beta -= lr * gradient
+    return beta
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
