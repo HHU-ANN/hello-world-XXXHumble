@@ -48,7 +48,7 @@ def read_data(path='./data/exp02/'):
     y = np.load(path + 'y_train.npy')
     return x, y
 
-if __name__ == '__main__':
+def main():
     data = np.array([1, 2, 3, 4, 5, 6])
     pred_ridge = ridge(data)
     pred_lasso = lasso(data)
