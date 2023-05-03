@@ -8,6 +8,7 @@ except ImportError as e:
     os.system("sudo pip3 install numpy")
     import numpy as np
 
+
 def ridge(data):
     # 加载数据
     X_train, y_train = read_data()
@@ -24,7 +25,8 @@ def ridge(data):
     data = np.insert(data, 0, 1)  # 插入偏置项
     pred = np.dot(theta, data)
     return pred
-    
+
+
 def lasso(data):
     # 加载数据
     X_train, y_train = read_data()
@@ -38,12 +40,13 @@ def lasso(data):
     eta = 0.01  # 学习率
     theta = np.zeros(n)  # 初始化模型参数
     for _ in range(n_iter):  # 迭代求解
-        gradient = (1/m) * X_train.T.dot(X_train.dot(theta) - y_train) + alpha * np.sign(theta)
+        gradient = (1 / m) * X_train.T.dot(X_train.dot(theta) - y_train) + alpha * np.sign(theta)
         theta -= eta * gradient
     # 预测
     data = np.insert(data, 0, 1)  # 插入偏置项
     pred = np.dot(theta, data)
     return pred
+
 
 def read_data(path='./data/exp02/'):
     x = np.load(path + 'X_train.npy')
